@@ -1,0 +1,322 @@
+---
+title: "Prozessiere Fassadenpunkte des LfU RP zur Verwendung durch die GHS"
+author: "Matthias Lochmann"
+---
+
+```{r packages}
+#| include: false
+rm(list=ls())
+library(tidyverse)
+
+library(sf)
+library(here)
+library(ggspatial)
+library(tmap)
+library(nngeo)
+```
+
+## Hoffnungen und Ziele
+
+Das LfU hat im Dezember 2025 Dateien geschickt, die für die weitere Analyse der Umgebungslärmkartierung Mainz-Bingen wichtig sind. Damals hatte ich die folgende Hoffnungen:
+
+1.  Dass die Fassadenpunkte mit Straßenlärm (Datei Fassadenpunkte.shp) jetzt vollständig sind, d.h. inklusive aller Fassadenpunkte, die keinen berechneten Straßen-Lärm haben. Meine Hoffnung: damit sollte die bislang nicht zuordenbare Teilnehmeradressen geolokalsiert sein. (Ich glaube es ging um ca. 8 %)-\> Das war eine Fehlannahme, diese Datei wurde nicht verändert.
+2.  Das Straßenverkehrsmodell ("Strassennetz_LK22.gpkg") für Mz-Bin (wichtig, um festzustellen, wie realistisch die berechneten Pegel sind; um Expositions-Misklassifikationen zu detektieren). -\> Analysiere ich weiter unten. Lageinformation ist da, aber die Analyse deckt Probleme für den weiteren Verlauf aus.
+3.  Die EBA-Fassadenpunkte für Mz-Bin und Mz: D.h. erstmals haben wir auch den vollständigen Expositions-Datensatz auch für Schienenlärm. -\> Das ist einerseits korrekt, andererseit fehlen darin die Adressdaten.
+
+Im Folgenden die etwas tiefergehende Analyse dieser Dateien.
+
+## Straßennetz Umgebungslärmkartierung Mainz-Bingen
+
+Die Datei
+
+```{r strasse_datei}
+#| echo: false
+
+pfad_strassennetz<-"../Strassennetz_LK22.gpkg"
+pfad_strassennetz
+
+```
+
+wurde im Dezember 2025 gesendet von Nathalie Paris, LfU. Die Datei wird hier in R untersucht. Die Datei sollte alle mit Straßenverkehr belegten Straßen aus dem für die Umgebungslärmkartierung verwendeten Straßenverkehrsmodell beinhalten. Sie besteht aus einem Geopackage mit folgenden Layern:
+
+```{r vorhandene_layer_str}
+st_layers(here(pfad_strassennetz))
+```
+
+Der Layer `strassennetz_lk22` enthält die Straßengeometrien:
+
+```{r strasse_einlesen}
+#| echo: false
+
+strNetz22<-st_read(dsn=pfad_strassennetz, layer="strassennetz_lk22") %>% 
+  st_transform(25832)
+
+summary(strNetz22)
+
+
+```
+
+und sieht so aus:
+
+```{r plotte_strassennetz}
+plStrNetz22<-strNetz22 %>% # extrahiere die ersten 5 Zeichen des Straßennamens
+  mutate(strassenbezeichnung=str_sub(STRASSE,end=5)) %>% 
+  ggplot()+
+  geom_sf(    # precise that it will be a spatial geometry
+    aes(                  # provide some aesthetics
+      geometry = geom,
+      color=strassenbezeichnung))
+plStrNetz22
+
+```
+
+## Fassadenpunkte exportiert 2024
+
+Die Datei
+
+```{r datei_fp2024}
+#| echo: false
+
+pfad_fassadenpunkte_2024<-"../Fassadenpunkte.shp"
+pfad_fassadenpunkte_2024
+
+```
+
+wurde schon im Dezember 2024 gesendet von Nathalie Paris, LfU. Sie besteht aus einer Shapedatei mit folgenden Layern:
+
+```{r layer_fp2024}
+st_layers(here(pfad_fassadenpunkte_2024))
+```
+
+Der Layer `Fassadenpunkte` enthält die Straßengeometrien:
+
+```{r einlesen_fp2024}
+#| echo: false
+fassadenpunkte_strasse24<-st_read(dsn=pfad_fassadenpunkte_2024)%>% 
+  st_transform(25832)
+summary(fassadenpunkte_strasse24)
+```
+
+```{r fassadenpunkte_plot2024}
+plot_anteil<-0.1
+fassadenpunkte_strasse24 %>%
+  slice_sample(prop = plot_anteil) %>%
+  ggplot() +
+  geom_sf(aes(geometry = geometry, color = LDEN),size=0.5)
+
+```
+
+Hier kombinieren wir die Fassadenpunkte mit dem Straßennetz:
+
+```{r fassadenpunkte_mit_strasse_plot2024}
+plStrNetz22 +
+  geom_sf(
+    data = fassadenpunkte_strasse24 %>%
+      slice_sample(prop = plot_anteil),
+    aes(geometry = geometry),
+    size=0.5,
+    inherit.aes = FALSE
+  )
+
+```
+
+### Zusammenhang Abstand und Pegel
+
+Es könnte sein, dass Fassadenpunkte nahe an nicht kartierten Straßen liegen, die faktisch deren Immissionspegel dominieren - somit würden die Pegel im vorliegenden Modell unterschätzt. Um das untersuchen zu können, wird hier der Abstand der Fassadenpunkte zur nächsten Straße im Straßennetz berechnet.
+
+```{r strassennetz_auftrennen}
+strNetz22<-
+  strNetz22 %>% 
+  mutate(str_art=str_sub(STRASSE,1,1))
+
+```
+
+Die Ergebnisse werden dann zu den Fassadenpunkten hinzugefügt und wieder als Shapedatei abgespeichert.
+
+```{r ermittle_strassenabstand}
+outpath_strassenabstand <- "../Fassadenpunkte_mitStrassenabstaende.shp"
+
+shp <- if (file.exists(outpath_strassenabstand)) {
+  tryCatch(
+    st_read(outpath_strassenabstand, quiet = FALSE),
+    error = function(e)
+      NULL
+  )
+} else {
+  NULL
+}
+
+if (!is.null(shp)) {
+  # gültige Shapedatei mit schon berechneten Abständen vorhanden → laden
+  fassadenpunkte_strasse24_m_abs <- shp
+  rm(shp)
+  message("Shapefile geladen.")
+  
+} else {
+  message("Berechne Entfernung")
+  # räumlicher Index wird automatisch genutzt
+  nearest_line_idx <-
+    st_nearest_feature(fassadenpunkte_strasse24 %>% st_zm, strNetz22 %>% st_zm)
+  
+  fassadenpunkte_strasse24_m_abs <-
+    fassadenpunkte_strasse24 %>%
+    mutate(strabst = as.numeric(
+      st_distance(
+        fassadenpunkte_strasse24 %>%
+          st_zm(),
+        strNetz22 %>%
+          st_zm() %>%
+          .[nearest_line_idx, ],
+        by_element = TRUE
+      )
+    ))
+  #speichere die erweiterten Fassadenpunkte wieder als shapefile
+  fassadenpunkte_strasse24_m_abs %>%
+    st_write(dsn = outpath_strassenabstand)
+  
+}
+
+
+```
+
+Der mittlere Abstand (gemittelt über alle Fassadenpunkte eines Hauses) zur nächsten Straße mit Straßenverkehr kommt in folgenden Quantilsabständen vor:
+
+```{r abstand_statistik}
+
+hausstatistik<-fassadenpunkte_strasse24_m_abs %>%
+  st_drop_geometry() %>% 
+  group_by(NAME) %>% 
+  summarise(mean_strabst=mean(strabst, na.rm=TRUE),
+            max=max(LDEN, na.rm=TRUE),
+            min=min(LDEN,na.rm = TRUE))%>%
+  pivot_longer(cols=c(max,min),
+               names_to="lautester_leisester",
+               values_to="LDEN")
+
+
+hausstatistik %>% 
+  filter(lautester_leisester == "max") %>%
+  select(mean_strabst) %>%
+  quantile(c(0.05,0.1,0.25,0.5,0.75), na.rm=TRUE)
+
+```
+
+Dabei ist zu beachten, dass es sich hier wohl nicht um einen vollständigen Fassadenpunkt-Datensatz handelt, sondern schätzungsweise 10 % der Häuser nicht enthalten sind. Das liegt daran, dass nur Fassadenpunkte mit hinreichend hohem berechneten Straßenlärmpegel exportiert wurden.
+
+Der Zusammenhang zwischen Abstand zur nächsten Straße und dem berechneten LDEN-Pegel an den Fassadenpunkten sieht so aus:
+
+```{r abstand_pegel_statistik_plot}
+
+breaks <- seq(0,3000,by=10)
+
+entf_stat<-hausstatistik %>%
+  filter(lautester_leisester == "max") %>%
+  mutate(abst_start = breaks[findInterval(mean_strabst, breaks)], abst_end =
+           breaks[findInterval(mean_strabst, breaks) + 1]) %>% group_by(abst_start,abst_end) %>%
+  summarise(Anzahl = n(),
+            gemittelter_lautester_LDEN = mean(LDEN, na.rm = TRUE))
+
+entf_stat%>%
+  ungroup() %>% 
+  arrange(abst_start) %>%
+  mutate(kumulativer_Anteil = cumsum(Anzahl)) %>%
+  mutate(kumulativer_Anteil=kumulativer_Anteil/max(kumulativer_Anteil),.after=1) %>% 
+  pivot_longer(cols=c(gemittelter_lautester_LDEN, Anzahl,kumulativer_Anteil),
+               names_to="variable",
+               values_to="wert") %>%
+  ggplot() +
+  geom_step(aes(x = abst_start, y = wert))+
+  facet_grid(vars(variable), scales="free_y")+ 
+  xlab("Abstand zur nächsten Straße mit Straßenverkehr [m]") +
+  ylab("Anzahl der Häuser / kumulierter Anteil Gebäude / mittlerer maximaler LDEN [dB(A)]")
+
+```
+
+```{r plotte_abstand_pegel}
+hausstatistik %>%
+  slice_sample(prop = plot_anteil) %>%
+  ggplot() +
+  geom_point(
+    aes(x = mean_strabst, y = LDEN, color = lautester_leisester),
+    size = 1,
+    alpha = 0.3
+  ) +
+  xlab("Abstand zur nächsten Straße mit Straßenverkehr [m]") +
+  ylab("berechneter Fassadenpegel LDEN [dB(A)]") +
+  facet_wrap( ~ lautester_leisester) +
+  scale_x_log10(guide = "axis_logticks")
+
+```
+
+Die x-Achse ist logaritmisch geplottet, sodass die geometrische Abstandsabhängigkeit (doppelte Entfernung-\> - 3 dB) leicht als Gerade sichtbar sein sollte. Das bei den roten Punkten nur bis ca. 200 m erkennbar. Autobahnen haben vermutlich in der Regel 5 bis 9 dB höhere Emissionen als Kreis-/ Landstraßen und vermutlich sind selten Wohnhäuser näher als ca. 200 m an Autobahnen.
+
+## Fassadenpunkte exportiert 2025
+
+Die Datei
+
+```{r datei_fp2025}
+#| echo: false
+
+pfad_fassadenpunkte_2025<-"../Fassadenpunkte_EBA.gpkg"
+pfad_fassadenpunkte_2025
+
+```
+
+wurde im Dezember 2025 gesendet von Nathalie Paris, LfU. Sie besteht aus einer gpkg-Datei mit folgenden Layern:
+
+```{r vorhandene_layer}
+st_layers(here(pfad_fassadenpunkte_2025))
+```
+
+Das bedeutet, dass darin offensichtlich nur die Fassadenpunkte mit Schienenpegeln vom Eisenbahnbundesamt (EBA) enthalten sind, allerdings die Adressdaten fehlen.
+
+```{r einlesen_fpEBA}
+#| echo: false
+fassadenpunkte_EBA<-st_read(dsn=pfad_fassadenpunkte_2025)%>% 
+  st_transform(25832)
+summary(fassadenpunkte_EBA)
+
+```
+
+Die Fassenpunkte EBA sehen so aus:
+
+```{r plotte_fp_EBA}
+fassadenpunkte_EBA %>%
+  slice_sample(prop = plot_anteil) %>%
+  ggplot()+
+  geom_sf(    # precise that it will be a spatial geometry
+    aes(                  # provide some aesthetics
+      geometry = geom,
+      color=AGS))
+
+```
+
+Sie enthalten neben den Fassadenpunkten aus dem Landkreis Mainz-Bingen offenbar auch die Fassadenpunkte aus Mainz. Es sieht aber so aus, also ob nur Fassadenpunkte nahe der kartierten Schienen enthalten sind.
+
+```{r reserve}
+#| eval: false
+#| include: false
+# library(terra)
+# library(gpkg)
+# library(RSQLite)
+# g <- geopackage(pfad_strassennetz, connect = TRUE)
+# g
+# gpkg_list_tables(g)
+
+# gpkg_table(g, "strassennetz_lk22", collect = TRUE) %>% 
+#   .$STRASSE %>% 
+#   unique()
+
+```
+
+## Zusammenschau der Fassadenpunkte 2024 und 2025 mit Straßennetz
+
+![](Fassadenpunkte%20Schiene%20und%20Straße.png)
+
+In dieser mit ArcGIS erstellten Karte sieht man, die Schienenfassadenpunkte (Kreuze; enthalten keine Adressdaten), die Straßenfassadenpunkte (Kreise, enthalten Adressdaten) zum Teil recht genau überlappen, es aber auch u.a. Gebäude nur mit einem der beiden Punkten gibt. Die Zahlen geben die in R berechneten Abstände zu den Straßen aus dem Verkehrsmodell an. Man sieht, dass es durchaus Fälle gibt, in denen die nicht modellierten Nebenstraßen die dominierende Quelle wären-\> Expositions-Misklassifikation.
+
+## Weitere Schritte
+
+-   Adressdaten an EBA Fassadenpunkte? Z.T. möglich durch Überlapp mit Fassadenpunkte Straße, aber z.T nicht.
+-   Die offenen Geodaten "ATKIS Basis-DLM RP" beinhalten z.B. alle Straßengeometrien inklusive Namen. Könnte man herunterladen/ WMS nutzen, um zusätzlich zu bereits bestimmten Abständen zur nächsten kartierten Straße auch noch den Abstand zu nächsten nicht kartierten Straße zu ermitteln.
+-   Überlege, ob mithilfe den Abständen zur Straße eine "Güteklassifizierung" oder so möglich wäre.
