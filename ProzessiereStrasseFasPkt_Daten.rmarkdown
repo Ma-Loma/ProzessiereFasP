@@ -15,6 +15,8 @@ library(tmap)
 library(nngeo)
 ```
 
+
+
 ## Hoffnungen und Ziele
 
 Das LfU hat im Dezember 2025 Dateien geschickt, die für die weitere Analyse der Umgebungslärmkartierung Mainz-Bingen wichtig sind. Damals hatte ich die folgende Hoffnungen:
@@ -29,6 +31,8 @@ Im Folgenden die etwas tiefergehende Analyse dieser Dateien.
 
 Die Datei
 
+
+
 ```{r strasse_datei}
 #| echo: false
 
@@ -37,13 +41,21 @@ pfad_strassennetz
 
 ```
 
+
+
 wurde im Dezember 2025 gesendet von Nathalie Paris, LfU. Die Datei wird hier in R untersucht. Die Datei sollte alle mit Straßenverkehr belegten Straßen aus dem für die Umgebungslärmkartierung verwendeten Straßenverkehrsmodell beinhalten. Sie besteht aus einem Geopackage mit folgenden Layern:
+
+
 
 ```{r vorhandene_layer_str}
 st_layers(pfad_strassennetz)
 ```
 
+
+
 Der Layer `strassennetz_lk22` enthält die Straßengeometrien:
+
+
 
 ```{r strasse_einlesen}
 #| echo: false
@@ -59,7 +71,11 @@ summary(strNetz22)
 
 ```
 
+
+
 und sieht so aus:
+
+
 
 ```{r plotte_strassennetz}
 plStrNetz22<-strNetz22 %>% # extrahiere die ersten 5 Zeichen des Straßennamens
@@ -73,9 +89,13 @@ plStrNetz22
 
 ```
 
+
+
 ## Fassadenpunkte exportiert 2024
 
 Die Datei
+
+
 
 ```{r datei_fp2024}
 #| echo: false
@@ -85,13 +105,21 @@ pfad_fassadenpunkte_2024
 
 ```
 
+
+
 wurde schon im Dezember 2024 gesendet von Nathalie Paris, LfU. Sie besteht aus einer Shapedatei mit folgenden Layern:
+
+
 
 ```{r layer_fp2024}
 st_layers(pfad_fassadenpunkte_2024)
 ```
 
+
+
 Der Layer `Fassadenpunkte` enthält die Straßengeometrien:
+
+
 
 ```{r einlesen_fp2024}
 #| echo: false
@@ -109,7 +137,11 @@ fassadenpunkte_strasse24 %>%
 
 ```
 
+
+
 Hier kombinieren wir die Fassadenpunkte mit dem Straßennetz:
+
+
 
 ```{r fassadenpunkte_mit_strasse_plot2024}
 plStrNetz22 +
@@ -123,9 +155,13 @@ plStrNetz22 +
 
 ```
 
+
+
 ### Zusammenhang Abstand und Pegel
 
 Es könnte sein, dass Fassadenpunkte nahe an nicht kartierten Straßen liegen, die faktisch deren Immissionspegel dominieren - somit würden die Pegel im vorliegenden Modell unterschätzt. Um das untersuchen zu können, wird hier der Abstand der Fassadenpunkte zur nächsten Straße im Straßennetz berechnet.
+
+
 
 ```{r strassennetz_auftrennen}
 strNetz22<-
@@ -134,7 +170,11 @@ strNetz22<-
 
 ```
 
+
+
 Die Ergebnisse werden dann zu den Fassadenpunkten hinzugefügt und wieder als Shapedatei abgespeichert.
+
+
 
 
 ```{r ermittle_strassenabstand}
@@ -163,7 +203,7 @@ fassadenpunkte_erweitert <- fassadenpunkte_strasse24 %>%
 message(paste("Anzahl Fassadenpunkte:", nrow(fassadenpunkte_erweitert)))
 
 # Straßentypen
-strassentypen <- c("A", "L", "B", "K")
+strassentypen <- c("A", "L", "G", "K")
 
 # 2. Schleife über Straßentypen
 for (typ in strassentypen) {
@@ -253,7 +293,11 @@ st_write(fassadenpunkte_erweitert, dsn = outpath_strassenabstand, delete_dsn = T
 message("---- SKRIPT TEIL ERFOLGREICH BEENDET ----")
 ```
 
+
+
 Der mittlere Abstand (gemittelt über alle Fassadenpunkte eines Hauses) zur nächsten Straße mit Straßenverkehr kommt in folgenden Quantilsabständen vor:
+
+
 
 ```{r abstand_statistik}
 # Nutzung von 'mindist' und 'gattung' (kurze Namen für Shapefiles)
@@ -278,9 +322,13 @@ table(hausstatistik$dominante_gattung)
 
 ```
 
+
+
 Dabei ist zu beachten, dass es sich hier wohl nicht um einen vollständigen Fassadenpunkt-Datensatz handelt, sondern schätzungsweise 10 % der Häuser nicht enthalten sind. Das liegt daran, dass nur Fassadenpunkte mit hinreichend hohem berechneten Straßenlärmpegel exportiert wurden.
 
 Der Zusammenhang zwischen Abstand zur nächsten Straße und dem berechneten LDEN-Pegel an den Fassadenpunkten sieht so aus:
+
+
 
 ```{r abstand_pegel_statistik_plot}
 
@@ -326,11 +374,15 @@ hausstatistik %>%
 
 ```
 
+
+
 Die x-Achse ist logaritmisch geplottet, sodass die geometrische Abstandsabhängigkeit (doppelte Entfernung-\> - 3 dB) leicht als Gerade sichtbar sein sollte. Das bei den roten Punkten nur bis ca. 200 m erkennbar. Autobahnen haben vermutlich in der Regel 5 bis 9 dB höhere Emissionen als Kreis-/ Landstraßen und vermutlich sind selten Wohnhäuser näher als ca. 200 m an Autobahnen.
 
 ## Fassadenpunkte exportiert 2025
 
 Die Datei
+
+
 
 ```{r datei_fp2025}
 #| echo: false
@@ -340,13 +392,21 @@ pfad_fassadenpunkte_2025
 
 ```
 
+
+
 wurde im Dezember 2025 gesendet von Nathalie Paris, LfU. Sie besteht aus einer gpkg-Datei mit folgenden Layern:
+
+
 
 ```{r vorhandene_layer}
 st_layers(here(pfad_fassadenpunkte_2025))
 ```
 
+
+
 Das bedeutet, dass darin offensichtlich nur die Fassadenpunkte mit Schienenpegeln vom Eisenbahnbundesamt (EBA) enthalten sind, allerdings die Adressdaten fehlen.
+
+
 
 ```{r einlesen_fpEBA}
 #| echo: false
@@ -356,7 +416,11 @@ summary(fassadenpunkte_EBA)
 
 ```
 
+
+
 Die Fassenpunkte EBA sehen so aus:
+
+
 
 ```{r plotte_fp_EBA}
 fassadenpunkte_EBA %>%
@@ -369,7 +433,11 @@ fassadenpunkte_EBA %>%
 
 ```
 
+
+
 Sie enthalten neben den Fassadenpunkten aus dem Landkreis Mainz-Bingen offenbar auch die Fassadenpunkte aus Mainz. Es sieht aber so aus, also ob nur Fassadenpunkte nahe der kartierten Schienen enthalten sind.
+
+
 
 ```{r reserve}
 #| eval: false
@@ -387,6 +455,8 @@ Sie enthalten neben den Fassadenpunkten aus dem Landkreis Mainz-Bingen offenbar 
 
 ```
 
+
+
 ## Zusammenschau der Fassadenpunkte 2024 und 2025 mit Straßennetz
 
 ![](Fassadenpunkte%20Schiene%20und%20Straße.png)
@@ -398,3 +468,4 @@ In dieser mit ArcGIS erstellten Karte sieht man, die Schienenfassadenpunkte (Kre
 -   Adressdaten an EBA Fassadenpunkte? Z.T. möglich durch Überlapp mit Fassadenpunkte Straße, aber z.T nicht.
 -   Die offenen Geodaten "ATKIS Basis-DLM RP" beinhalten z.B. alle Straßengeometrien inklusive Namen. Könnte man herunterladen/ WMS nutzen, um zusätzlich zu bereits bestimmten Abständen zur nächsten kartierten Straße auch noch den Abstand zu nächsten nicht kartierten Straße zu ermitteln.
 -   Überlege, ob mithilfe den Abständen zur Straße eine "Güteklassifizierung" oder so möglich wäre.
+
