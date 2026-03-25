@@ -1,5 +1,8 @@
+# produced GIS-output
 *.gpkg
 
+# Rmarkdown is only produced as intermediate step
+*rmarkdown
 # History files
 .Rhistory
 .Rapp.history
