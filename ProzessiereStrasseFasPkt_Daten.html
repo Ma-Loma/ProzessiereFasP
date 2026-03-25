@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -62,14 +62,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="ProzessiereStrasseFasPkt_Daten_files/libs/clipboard/clipboard.min.js"></script>
 <script src="ProzessiereStrasseFasPkt_Daten_files/libs/quarto-html/quarto.js" type="module"></script>
 <script src="ProzessiereStrasseFasPkt_Daten_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="ProzessiereStrasseFasPkt_Daten_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="ProzessiereStrasseFasPkt_Daten_files/libs/quarto-html/popper.min.js"></script>
 <script src="ProzessiereStrasseFasPkt_Daten_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="ProzessiereStrasseFasPkt_Daten_files/libs/quarto-html/anchor.min.js"></script>
 <link href="ProzessiereStrasseFasPkt_Daten_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="ProzessiereStrasseFasPkt_Daten_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="ProzessiereStrasseFasPkt_Daten_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="ProzessiereStrasseFasPkt_Daten_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="ProzessiereStrasseFasPkt_Daten_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="ProzessiereStrasseFasPkt_Daten_files/libs/bootstrap/bootstrap-bb462d781dde1847d9e3ccf7736099dd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="ProzessiereStrasseFasPkt_Daten_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -105,6 +106,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<section id="vorbemerkung-dateipfade" class="level2">
+<h2 class="anchored" data-anchor-id="vorbemerkung-dateipfade">Vorbemerkung Dateipfade</h2>
+<p>Da dieses Projekt von verschiedenen Menschen auf verschiedenen Computersystemen verwendet wird, sind hier alle im Projekt verwendeten Pfade versammelt, sodass sie ggf. leicht angepasst werden können:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>daten_ordner_pfad <span class="ot">&lt;-</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"N:/4all.i4/I4.9 - Umweltbezogene Krankheitslast/04 - Daten/Lärm/Mainz-Bingen/"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#  das hier ist vermutlich von Tim: "D:/Mainz-Bingen/"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>ausgabepfad_strabst <span class="ot">&lt;-</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(daten_ordner_pfad,                                <span class="st">"Fassadenpunkte_mit_allen_Abstaenden.gpkg"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>eingabepfad_strassennetz <span class="ot">&lt;-</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(daten_ordner_pfad,                               </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Strassennetz_LK22.gpkg"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>eingabepfad_fasp_2024 <span class="ot">&lt;-</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(daten_ordner_pfad,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>         <span class="st">"Fassadenpunkte.shp"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>eingabepfad_fasp_2025 <span class="ot">&lt;-</span> <span class="st">"../Fassadenpunkte_EBA.gpkg"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
 <section id="hoffnungen-und-ziele" class="level2">
 <h2 class="anchored" data-anchor-id="hoffnungen-und-ziele">Hoffnungen und Ziele</h2>
 <p>Das LfU hat im Dezember 2025 Dateien geschickt, die für die weitere Analyse der Umgebungslärmkartierung Mainz-Bingen wichtig sind. Damals hatte ich die folgende Hoffnungen:</p>
@@ -117,15 +140,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="straßennetz-umgebungslärmkartierung-mainz-bingen" class="level2">
 <h2 class="anchored" data-anchor-id="straßennetz-umgebungslärmkartierung-mainz-bingen">Straßennetz Umgebungslärmkartierung Mainz-Bingen</h2>
-<p>Die Datei</p>
+<p>Die Datei N:/4all.i4/I4.9 - Umweltbezogene Krankheitslast/04 - Daten/Lärm/Mainz-Bingen/Strassennetz_LK22.gpkg wurde im Dezember 2025 gesendet von Nathalie Paris, LfU. Die Datei wird hier in R untersucht. Die Datei sollte alle mit Straßenverkehr belegten Straßen aus dem für die Umgebungslärmkartierung verwendeten Straßenverkehrsmodell beinhalten. Sie besteht aus einem Geopackage mit folgenden Layern:</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "../Strassennetz_LK22.gpkg"</code></pre>
-</div>
-</div>
-<p>wurde im Dezember 2025 gesendet von Nathalie Paris, LfU. Die Datei wird hier in R untersucht. Die Datei sollte alle mit Straßenverkehr belegten Straßen aus dem für die Umgebungslärmkartierung verwendeten Straßenverkehrsmodell beinhalten. Sie besteht aus einem Geopackage mit folgenden Layern:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">st_layers</span>(<span class="fu">here</span>(pfad_strassennetz))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">st_layers</span>(eingabepfad_strassennetz)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Driver: GPKG 
 Available layers:
@@ -157,25 +174,25 @@ Projected CRS: ETRS89 / UTM zone 32N</code></pre>
  Mean   :32542                      Mean   : 489.8962  
  3rd Qu.:35731                      3rd Qu.: 587.4921  
  Max.   :59795                      Max.   :9615.3664  
-                 geom     
- MULTILINESTRING ZM:2397  
- epsg:25832        :   0  
- +proj=utm ...     :   0  
-                          
-                          
-                          </code></pre>
+                 geom        str_art         
+ MULTILINESTRING ZM:2397   Length:2397       
+ epsg:25832        :   0   Class :character  
+ +proj=utm ...     :   0   Mode  :character  
+                                             
+                                             
+                                             </code></pre>
 </div>
 </div>
 <p>und sieht so aus:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>plStrNetz22<span class="ot">&lt;-</span>strNetz22 <span class="sc">%&gt;%</span> <span class="co"># extrahiere die ersten 5 Zeichen des Straßennamens</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>plStrNetz22<span class="ot">&lt;-</span>strNetz22 <span class="sc">%&gt;%</span> <span class="co"># extrahiere die ersten 5 Zeichen des Straßennamens</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">strassenbezeichnung=</span><span class="fu">str_sub</span>(STRASSE,<span class="at">end=</span><span class="dv">5</span>)) <span class="sc">%&gt;%</span> </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(    <span class="co"># precise that it will be a spatial geometry</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(                  <span class="co"># provide some aesthetics</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">geometry =</span> geom,</span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">color=</span>strassenbezeichnung))</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>plStrNetz22</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>plStrNetz22</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -187,15 +204,9 @@ Projected CRS: ETRS89 / UTM zone 32N</code></pre>
 </section>
 <section id="fassadenpunkte-exportiert-2024" class="level2">
 <h2 class="anchored" data-anchor-id="fassadenpunkte-exportiert-2024">Fassadenpunkte exportiert 2024</h2>
-<p>Die Datei</p>
+<p>Die Datei N:/4all.i4/I4.9 - Umweltbezogene Krankheitslast/04 - Daten/Lärm/Mainz-Bingen/Fassadenpunkte.shp wurde schon im Dezember 2024 gesendet von Nathalie Paris, LfU. Sie besteht aus einer Shapedatei mit folgenden Layern:</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "../Fassadenpunkte.shp"</code></pre>
-</div>
-</div>
-<p>wurde schon im Dezember 2024 gesendet von Nathalie Paris, LfU. Sie besteht aus einer Shapedatei mit folgenden Layern:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">st_layers</span>(<span class="fu">here</span>(pfad_fassadenpunkte_2024))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">st_layers</span>(eingabepfad_fasp_2024)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Driver: ESRI Shapefile 
 Available layers:
@@ -241,12 +252,13 @@ Projected CRS: ETRS89 / UTM zone 32N (N-E)</code></pre>
                                                              </code></pre>
 </div>
 </div>
+<p>und sieht so aus:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>plot_anteil<span class="ot">&lt;-</span><span class="fl">0.1</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>fassadenpunkte_strasse24 <span class="sc">%&gt;%</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">prop =</span> plot_anteil) <span class="sc">%&gt;%</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">geometry =</span> geometry, <span class="at">color =</span> LDEN),<span class="at">size=</span><span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>plot_anteil<span class="ot">&lt;-</span><span class="fl">0.1</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>fassadenpunkte_strasse24 <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">prop =</span> plot_anteil) <span class="sc">%&gt;%</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">geometry =</span> geometry, <span class="at">color =</span> LDEN),<span class="at">size=</span><span class="fl">0.5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -257,14 +269,14 @@ Projected CRS: ETRS89 / UTM zone 32N (N-E)</code></pre>
 </div>
 <p>Hier kombinieren wir die Fassadenpunkte mit dem Straßennetz:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>plStrNetz22 <span class="sc">+</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> fassadenpunkte_strasse24 <span class="sc">%&gt;%</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">slice_sample</span>(<span class="at">prop =</span> plot_anteil),</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">geometry =</span> geometry),</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">size=</span><span class="fl">0.5</span>,</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">inherit.aes =</span> <span class="cn">FALSE</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>plStrNetz22 <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> fassadenpunkte_strasse24 <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">slice_sample</span>(<span class="at">prop =</span> plot_anteil),</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">geometry =</span> geometry),</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">size=</span><span class="fl">0.5</span>,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">inherit.aes =</span> <span class="cn">FALSE</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -275,120 +287,1555 @@ Projected CRS: ETRS89 / UTM zone 32N (N-E)</code></pre>
 </div>
 <section id="zusammenhang-abstand-und-pegel" class="level3">
 <h3 class="anchored" data-anchor-id="zusammenhang-abstand-und-pegel">Zusammenhang Abstand und Pegel</h3>
-<p>Es könnte sein, dass Fassadenpunkte nahe an nicht kartierten Straßen liegen, die faktisch deren Immissionspegel dominieren - somit würden die Pegel im vorliegenden Modell unterschätzt. Um das untersuchen zu können, wird hier der Abstand der Fassadenpunkte zur nächsten Straße im Straßennetz berechnet.</p>
+<p>Es könnte sein, dass Fassadenpunkte nahe an nicht kartierten Straßen liegen, die faktisch deren Immissionspegel dominieren - somit würden die Pegel im vorliegenden Modell unterschätzt.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>strNetz22<span class="ot">&lt;-</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  strNetz22 <span class="sc">%&gt;%</span> </span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">str_art=</span><span class="fu">str_sub</span>(STRASSE,<span class="dv">1</span>,<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>strNetz22<span class="ot">&lt;-</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  strNetz22 <span class="sc">%&gt;%</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">str_art=</span><span class="fu">str_sub</span>(STRASSE,<span class="dv">1</span>,<span class="dv">1</span>))<span class="co"># das hier extrahiert einfach den ersten Buchstaben: also A, B, K oder L</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Die Ergebnisse werden dann zu den Fassadenpunkten hinzugefügt und wieder als Shapedatei abgespeichert.</p>
+<p>Um das untersuchen zu können, wird hier der Abstand der Fassadenpunkte zur nächsten Straße im Straßennetz berechnet. Die Ergebnisse werden dann zu den Fassadenpunkten hinzugefügt und wieder als Shapedatei abgespeichert.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>outpath_strassenabstand <span class="ot">&lt;-</span> <span class="st">"../Fassadenpunkte_mitStrassenabstaende.shp"</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>shp <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="fu">file.exists</span>(outpath_strassenabstand)) {</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tryCatch</span>(</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_read</span>(outpath_strassenabstand, <span class="at">quiet =</span> <span class="cn">FALSE</span>),</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">error =</span> <span class="cf">function</span>(e)</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>      <span class="cn">NULL</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="cn">NULL</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(shp)) {</span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># gültige Shapedatei mit schon berechneten Abständen vorhanden → laden</span></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  fassadenpunkte_strasse24_m_abs <span class="ot">&lt;-</span> shp</span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rm</span>(shp)</span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">"Shapefile geladen."</span>)</span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">"Berechne Entfernung"</span>)</span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># räumlicher Index wird automatisch genutzt</span></span>
-<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>  nearest_line_idx <span class="ot">&lt;-</span></span>
-<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_nearest_feature</span>(fassadenpunkte_strasse24 <span class="sc">%&gt;%</span> st_zm, strNetz22 <span class="sc">%&gt;%</span> st_zm)</span>
-<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>  fassadenpunkte_strasse24_m_abs <span class="ot">&lt;-</span></span>
-<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>    fassadenpunkte_strasse24 <span class="sc">%&gt;%</span></span>
-<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">strabst =</span> <span class="fu">as.numeric</span>(</span>
-<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>      <span class="fu">st_distance</span>(</span>
-<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>        fassadenpunkte_strasse24 <span class="sc">%&gt;%</span></span>
-<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>          <span class="fu">st_zm</span>(),</span>
-<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>        strNetz22 <span class="sc">%&gt;%</span></span>
-<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>          <span class="fu">st_zm</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>          .[nearest_line_idx, ],</span>
-<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>        <span class="at">by_element =</span> <span class="cn">TRUE</span></span>
-<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>    ))</span>
-<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>  <span class="co">#speichere die erweiterten Fassadenpunkte wieder als shapefile</span></span>
-<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>  fassadenpunkte_strasse24_m_abs <span class="sc">%&gt;%</span></span>
-<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_write</span>(<span class="at">dsn =</span> outpath_strassenabstand)</span>
-<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Berechne Entfernung</code></pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pfad für die Ausgabedatei</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>ausgabepfad_strabst</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Writing layer `Fassadenpunkte_mitStrassenabstaende' to data source 
-  `../Fassadenpunkte_mitStrassenabstaende.shp' using driver `ESRI Shapefile'
-Writing 539444 features with 11 fields and geometry type 3D Measured Point.</code></pre>
+<pre><code>[1] "N:/4all.i4/I4.9 - Umweltbezogene Krankheitslast/04 - Daten/Lärm/Mainz-Bingen/Fassadenpunkte_mit_allen_Abstaenden.gpkg"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Alte Dateien löschen für sauberen Neustart</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">file.exists</span>(ausgabepfad_strabst)) {</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  base_path <span class="ot">&lt;-</span> tools<span class="sc">::</span><span class="fu">file_path_sans_ext</span>(ausgabepfad_strabst)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Lösche alle Endungen (.shp, .shx, .dbf, .prj etc.)</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  files_to_delete <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="fu">dirname</span>(ausgabepfad_strabst), </span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                                <span class="at">pattern =</span> <span class="fu">paste0</span>(<span class="fu">basename</span>(base_path), <span class="st">".*"</span>), </span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>                                <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unlink</span>(files_to_delete)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">"Alte Ausgabedateien gelöscht."</span>)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"---- START: Datenvorbereitung ----"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>---- START: Datenvorbereitung ----</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Fassadenpunkte vorbereiten (Geometrie reparieren + Z-Werte entfernen)</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Das verhindert GEOS-Fehler</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>fassadenpunkte_erweitert <span class="ot">&lt;-</span> fassadenpunkte_strasse24 <span class="sc">%&gt;%</span> </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_zm</span>(<span class="at">drop =</span> <span class="cn">TRUE</span>, <span class="at">what =</span> <span class="st">"ZM"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_make_valid</span>() </span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="fu">paste</span>(<span class="st">"Anzahl Fassadenpunkte:"</span>, <span class="fu">nrow</span>(fassadenpunkte_erweitert)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Anzahl Fassadenpunkte: 539444</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Straßentypen</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>strassentypen <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"L"</span>, <span class="st">"B"</span>, <span class="st">"K"</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Schleife über Straßentypen</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (typ <span class="cf">in</span> strassentypen) {</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="fu">paste0</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">---- Verarbeite Straßentyp: "</span>, typ, <span class="st">" ----"</span>))</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Straßen filtern &amp; reparieren</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  str_subset <span class="ot">&lt;-</span> strNetz22 <span class="sc">%&gt;%</span> </span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(str_art <span class="sc">==</span> typ) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_zm</span>(<span class="at">drop =</span> <span class="cn">TRUE</span>, <span class="at">what =</span> <span class="st">"ZM"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_make_valid</span>()</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Initialisiere Spalte mit NA</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>  col_name <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"dist_"</span>, typ)</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>  fassadenpunkte_erweitert[[col_name]] <span class="ot">&lt;-</span> <span class="cn">NA_real_</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">nrow</span>(str_subset) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="fu">paste</span>(<span class="st">"Straßen gefunden:"</span>, <span class="fu">nrow</span>(str_subset), <span class="st">"- Starte Berechnung..."</span>))</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># --- BATCH PROCESSING ---</span></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Wir machen kleine Häppchen à 1000 Punkte.</span></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Das erlaubt uns, Fortschritt zu sehen und schont den RAM.</span></span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>    chunk_size <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>    n_points <span class="ot">&lt;-</span> <span class="fu">nrow</span>(fassadenpunkte_erweitert)</span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>    indices <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>, n_points)</span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>    chunks <span class="ot">&lt;-</span> <span class="fu">split</span>(indices, <span class="fu">ceiling</span>(indices<span class="sc">/</span>chunk_size))</span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>    total_chunks <span class="ot">&lt;-</span> <span class="fu">length</span>(chunks)</span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(chunks)) {</span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>      idx <span class="ot">&lt;-</span> chunks[[i]] <span class="co"># Die Zeilennummern für diesen Durchlauf</span></span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Nur alle 5 Chunks (oder beim ersten) eine Meldung drucken, um das Log nicht zu fluten</span></span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (i <span class="sc">==</span> <span class="dv">1</span> <span class="sc">||</span> i <span class="sc">%%</span> <span class="dv">5</span> <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a>        <span class="fu">message</span>(<span class="fu">paste0</span>(<span class="st">"  -&gt; Typ "</span>, typ, <span class="st">": Verarbeite Batch "</span>, i, <span class="st">" von "</span>, total_chunks, </span>
+<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a>                       <span class="st">" (Punkte "</span>, <span class="fu">min</span>(idx), <span class="st">" bis "</span>, <span class="fu">max</span>(idx), <span class="st">")"</span>))</span>
+<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 1. Subset der Punkte</span></span>
+<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a>      pts_chunk <span class="ot">&lt;-</span> fassadenpunkte_erweitert[idx, ]</span>
+<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 2. Nächsten Index finden (Das ist der rechenintensive Teil)</span></span>
+<span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Wir nutzen try(), falls eine Geometrie crasht, bricht nicht alles ab</span></span>
+<span id="cb20-46"><a href="#cb20-46" aria-hidden="true" tabindex="-1"></a>      nearest_idx <span class="ot">&lt;-</span> <span class="fu">try</span>(<span class="fu">st_nearest_feature</span>(pts_chunk, str_subset), <span class="at">silent =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb20-47"><a href="#cb20-47" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb20-48"><a href="#cb20-48" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="sc">!</span><span class="fu">inherits</span>(nearest_idx, <span class="st">"try-error"</span>)) {</span>
+<span id="cb20-49"><a href="#cb20-49" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 3. Geometrie der gefundenen Straßen holen</span></span>
+<span id="cb20-50"><a href="#cb20-50" aria-hidden="true" tabindex="-1"></a>        nearest_geoms <span class="ot">&lt;-</span> <span class="fu">st_geometry</span>(str_subset)[nearest_idx]</span>
+<span id="cb20-51"><a href="#cb20-51" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb20-52"><a href="#cb20-52" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 4. Exakte Distanz berechnen (element-wise)</span></span>
+<span id="cb20-53"><a href="#cb20-53" aria-hidden="true" tabindex="-1"></a>        dists <span class="ot">&lt;-</span> <span class="fu">st_distance</span>(pts_chunk, nearest_geoms, <span class="at">by_element =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb20-54"><a href="#cb20-54" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb20-55"><a href="#cb20-55" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Speichern</span></span>
+<span id="cb20-56"><a href="#cb20-56" aria-hidden="true" tabindex="-1"></a>        fassadenpunkte_erweitert[[col_name]][idx] <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(dists)</span>
+<span id="cb20-57"><a href="#cb20-57" aria-hidden="true" tabindex="-1"></a>      } <span class="cf">else</span> {</span>
+<span id="cb20-58"><a href="#cb20-58" aria-hidden="true" tabindex="-1"></a>        <span class="fu">message</span>(<span class="fu">paste</span>(<span class="st">"  ACHTUNG: Fehler bei Batch"</span>, i))</span>
+<span id="cb20-59"><a href="#cb20-59" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb20-60"><a href="#cb20-60" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb20-61"><a href="#cb20-61" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="fu">paste</span>(<span class="st">"---- Fertig mit Typ"</span>, typ, <span class="st">"----"</span>))</span>
+<span id="cb20-62"><a href="#cb20-62" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb20-63"><a href="#cb20-63" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb20-64"><a href="#cb20-64" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="fu">paste</span>(<span class="st">"Keine Straßen vom Typ"</span>, typ, <span class="st">"gefunden."</span>))</span>
+<span id="cb20-65"><a href="#cb20-65" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb20-66"><a href="#cb20-66" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+---- Verarbeite Straßentyp: A ----</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning in CPL_write_ogr(obj, dsn, layer, driver,
-as.character(dataset_options), : GDAL Message 1: One or several characters
-couldn't be converted correctly from UTF-8 to ISO-8859-1.  This warning will
-not be emitted anymore.</code></pre>
+<pre><code>Straßen gefunden: 91 - Starte Berechnung...</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 1 von 540 (Punkte 1 bis 1000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 5 von 540 (Punkte 4001 bis 5000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 10 von 540 (Punkte 9001 bis 10000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 15 von 540 (Punkte 14001 bis 15000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 20 von 540 (Punkte 19001 bis 20000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 25 von 540 (Punkte 24001 bis 25000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 30 von 540 (Punkte 29001 bis 30000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 35 von 540 (Punkte 34001 bis 35000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 40 von 540 (Punkte 39001 bis 40000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 45 von 540 (Punkte 44001 bis 45000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 50 von 540 (Punkte 49001 bis 50000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 55 von 540 (Punkte 54001 bis 55000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 60 von 540 (Punkte 59001 bis 60000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 65 von 540 (Punkte 64001 bis 65000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 70 von 540 (Punkte 69001 bis 70000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 75 von 540 (Punkte 74001 bis 75000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 80 von 540 (Punkte 79001 bis 80000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 85 von 540 (Punkte 84001 bis 85000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 90 von 540 (Punkte 89001 bis 90000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 95 von 540 (Punkte 94001 bis 95000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 100 von 540 (Punkte 99001 bis 100000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 105 von 540 (Punkte 104001 bis 105000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 110 von 540 (Punkte 109001 bis 110000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 115 von 540 (Punkte 114001 bis 115000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 120 von 540 (Punkte 119001 bis 120000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 125 von 540 (Punkte 124001 bis 125000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 130 von 540 (Punkte 129001 bis 130000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 135 von 540 (Punkte 134001 bis 135000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 140 von 540 (Punkte 139001 bis 140000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 145 von 540 (Punkte 144001 bis 145000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 150 von 540 (Punkte 149001 bis 150000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 155 von 540 (Punkte 154001 bis 155000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 160 von 540 (Punkte 159001 bis 160000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 165 von 540 (Punkte 164001 bis 165000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 170 von 540 (Punkte 169001 bis 170000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 175 von 540 (Punkte 174001 bis 175000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 180 von 540 (Punkte 179001 bis 180000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 185 von 540 (Punkte 184001 bis 185000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 190 von 540 (Punkte 189001 bis 190000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 195 von 540 (Punkte 194001 bis 195000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 200 von 540 (Punkte 199001 bis 200000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 205 von 540 (Punkte 204001 bis 205000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 210 von 540 (Punkte 209001 bis 210000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 215 von 540 (Punkte 214001 bis 215000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 220 von 540 (Punkte 219001 bis 220000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 225 von 540 (Punkte 224001 bis 225000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 230 von 540 (Punkte 229001 bis 230000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 235 von 540 (Punkte 234001 bis 235000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 240 von 540 (Punkte 239001 bis 240000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 245 von 540 (Punkte 244001 bis 245000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 250 von 540 (Punkte 249001 bis 250000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 255 von 540 (Punkte 254001 bis 255000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 260 von 540 (Punkte 259001 bis 260000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 265 von 540 (Punkte 264001 bis 265000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 270 von 540 (Punkte 269001 bis 270000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 275 von 540 (Punkte 274001 bis 275000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 280 von 540 (Punkte 279001 bis 280000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 285 von 540 (Punkte 284001 bis 285000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 290 von 540 (Punkte 289001 bis 290000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 295 von 540 (Punkte 294001 bis 295000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 300 von 540 (Punkte 299001 bis 300000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 305 von 540 (Punkte 304001 bis 305000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 310 von 540 (Punkte 309001 bis 310000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 315 von 540 (Punkte 314001 bis 315000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 320 von 540 (Punkte 319001 bis 320000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 325 von 540 (Punkte 324001 bis 325000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 330 von 540 (Punkte 329001 bis 330000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 335 von 540 (Punkte 334001 bis 335000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 340 von 540 (Punkte 339001 bis 340000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 345 von 540 (Punkte 344001 bis 345000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 350 von 540 (Punkte 349001 bis 350000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 355 von 540 (Punkte 354001 bis 355000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 360 von 540 (Punkte 359001 bis 360000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 365 von 540 (Punkte 364001 bis 365000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 370 von 540 (Punkte 369001 bis 370000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 375 von 540 (Punkte 374001 bis 375000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 380 von 540 (Punkte 379001 bis 380000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 385 von 540 (Punkte 384001 bis 385000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 390 von 540 (Punkte 389001 bis 390000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 395 von 540 (Punkte 394001 bis 395000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 400 von 540 (Punkte 399001 bis 400000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 405 von 540 (Punkte 404001 bis 405000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 410 von 540 (Punkte 409001 bis 410000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 415 von 540 (Punkte 414001 bis 415000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 420 von 540 (Punkte 419001 bis 420000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 425 von 540 (Punkte 424001 bis 425000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 430 von 540 (Punkte 429001 bis 430000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 435 von 540 (Punkte 434001 bis 435000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 440 von 540 (Punkte 439001 bis 440000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 445 von 540 (Punkte 444001 bis 445000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 450 von 540 (Punkte 449001 bis 450000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 455 von 540 (Punkte 454001 bis 455000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 460 von 540 (Punkte 459001 bis 460000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 465 von 540 (Punkte 464001 bis 465000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 470 von 540 (Punkte 469001 bis 470000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 475 von 540 (Punkte 474001 bis 475000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 480 von 540 (Punkte 479001 bis 480000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 485 von 540 (Punkte 484001 bis 485000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 490 von 540 (Punkte 489001 bis 490000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 495 von 540 (Punkte 494001 bis 495000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 500 von 540 (Punkte 499001 bis 500000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 505 von 540 (Punkte 504001 bis 505000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 510 von 540 (Punkte 509001 bis 510000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 515 von 540 (Punkte 514001 bis 515000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 520 von 540 (Punkte 519001 bis 520000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 525 von 540 (Punkte 524001 bis 525000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 530 von 540 (Punkte 529001 bis 530000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 535 von 540 (Punkte 534001 bis 535000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ A: Verarbeite Batch 540 von 540 (Punkte 539001 bis 539444)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>---- Fertig mit Typ A ----</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+---- Verarbeite Straßentyp: L ----</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Straßen gefunden: 1281 - Starte Berechnung...</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 1 von 540 (Punkte 1 bis 1000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 5 von 540 (Punkte 4001 bis 5000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 10 von 540 (Punkte 9001 bis 10000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 15 von 540 (Punkte 14001 bis 15000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 20 von 540 (Punkte 19001 bis 20000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 25 von 540 (Punkte 24001 bis 25000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 30 von 540 (Punkte 29001 bis 30000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 35 von 540 (Punkte 34001 bis 35000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 40 von 540 (Punkte 39001 bis 40000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 45 von 540 (Punkte 44001 bis 45000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 50 von 540 (Punkte 49001 bis 50000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 55 von 540 (Punkte 54001 bis 55000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 60 von 540 (Punkte 59001 bis 60000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 65 von 540 (Punkte 64001 bis 65000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 70 von 540 (Punkte 69001 bis 70000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 75 von 540 (Punkte 74001 bis 75000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 80 von 540 (Punkte 79001 bis 80000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 85 von 540 (Punkte 84001 bis 85000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 90 von 540 (Punkte 89001 bis 90000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 95 von 540 (Punkte 94001 bis 95000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 100 von 540 (Punkte 99001 bis 100000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 105 von 540 (Punkte 104001 bis 105000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 110 von 540 (Punkte 109001 bis 110000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 115 von 540 (Punkte 114001 bis 115000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 120 von 540 (Punkte 119001 bis 120000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 125 von 540 (Punkte 124001 bis 125000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 130 von 540 (Punkte 129001 bis 130000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 135 von 540 (Punkte 134001 bis 135000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 140 von 540 (Punkte 139001 bis 140000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 145 von 540 (Punkte 144001 bis 145000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 150 von 540 (Punkte 149001 bis 150000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 155 von 540 (Punkte 154001 bis 155000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 160 von 540 (Punkte 159001 bis 160000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 165 von 540 (Punkte 164001 bis 165000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 170 von 540 (Punkte 169001 bis 170000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 175 von 540 (Punkte 174001 bis 175000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 180 von 540 (Punkte 179001 bis 180000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 185 von 540 (Punkte 184001 bis 185000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 190 von 540 (Punkte 189001 bis 190000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 195 von 540 (Punkte 194001 bis 195000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 200 von 540 (Punkte 199001 bis 200000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 205 von 540 (Punkte 204001 bis 205000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 210 von 540 (Punkte 209001 bis 210000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 215 von 540 (Punkte 214001 bis 215000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 220 von 540 (Punkte 219001 bis 220000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 225 von 540 (Punkte 224001 bis 225000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 230 von 540 (Punkte 229001 bis 230000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 235 von 540 (Punkte 234001 bis 235000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 240 von 540 (Punkte 239001 bis 240000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 245 von 540 (Punkte 244001 bis 245000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 250 von 540 (Punkte 249001 bis 250000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 255 von 540 (Punkte 254001 bis 255000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 260 von 540 (Punkte 259001 bis 260000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 265 von 540 (Punkte 264001 bis 265000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 270 von 540 (Punkte 269001 bis 270000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 275 von 540 (Punkte 274001 bis 275000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 280 von 540 (Punkte 279001 bis 280000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 285 von 540 (Punkte 284001 bis 285000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 290 von 540 (Punkte 289001 bis 290000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 295 von 540 (Punkte 294001 bis 295000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 300 von 540 (Punkte 299001 bis 300000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 305 von 540 (Punkte 304001 bis 305000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 310 von 540 (Punkte 309001 bis 310000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 315 von 540 (Punkte 314001 bis 315000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 320 von 540 (Punkte 319001 bis 320000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 325 von 540 (Punkte 324001 bis 325000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 330 von 540 (Punkte 329001 bis 330000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 335 von 540 (Punkte 334001 bis 335000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 340 von 540 (Punkte 339001 bis 340000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 345 von 540 (Punkte 344001 bis 345000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 350 von 540 (Punkte 349001 bis 350000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 355 von 540 (Punkte 354001 bis 355000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 360 von 540 (Punkte 359001 bis 360000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 365 von 540 (Punkte 364001 bis 365000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 370 von 540 (Punkte 369001 bis 370000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 375 von 540 (Punkte 374001 bis 375000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 380 von 540 (Punkte 379001 bis 380000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 385 von 540 (Punkte 384001 bis 385000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 390 von 540 (Punkte 389001 bis 390000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 395 von 540 (Punkte 394001 bis 395000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 400 von 540 (Punkte 399001 bis 400000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 405 von 540 (Punkte 404001 bis 405000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 410 von 540 (Punkte 409001 bis 410000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 415 von 540 (Punkte 414001 bis 415000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 420 von 540 (Punkte 419001 bis 420000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 425 von 540 (Punkte 424001 bis 425000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 430 von 540 (Punkte 429001 bis 430000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 435 von 540 (Punkte 434001 bis 435000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 440 von 540 (Punkte 439001 bis 440000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 445 von 540 (Punkte 444001 bis 445000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 450 von 540 (Punkte 449001 bis 450000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 455 von 540 (Punkte 454001 bis 455000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 460 von 540 (Punkte 459001 bis 460000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 465 von 540 (Punkte 464001 bis 465000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 470 von 540 (Punkte 469001 bis 470000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 475 von 540 (Punkte 474001 bis 475000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 480 von 540 (Punkte 479001 bis 480000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 485 von 540 (Punkte 484001 bis 485000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 490 von 540 (Punkte 489001 bis 490000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 495 von 540 (Punkte 494001 bis 495000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 500 von 540 (Punkte 499001 bis 500000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 505 von 540 (Punkte 504001 bis 505000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 510 von 540 (Punkte 509001 bis 510000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 515 von 540 (Punkte 514001 bis 515000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 520 von 540 (Punkte 519001 bis 520000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 525 von 540 (Punkte 524001 bis 525000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 530 von 540 (Punkte 529001 bis 530000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 535 von 540 (Punkte 534001 bis 535000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ L: Verarbeite Batch 540 von 540 (Punkte 539001 bis 539444)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>---- Fertig mit Typ L ----</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+---- Verarbeite Straßentyp: B ----</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Straßen gefunden: 331 - Starte Berechnung...</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 1 von 540 (Punkte 1 bis 1000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 5 von 540 (Punkte 4001 bis 5000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 10 von 540 (Punkte 9001 bis 10000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 15 von 540 (Punkte 14001 bis 15000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 20 von 540 (Punkte 19001 bis 20000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 25 von 540 (Punkte 24001 bis 25000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 30 von 540 (Punkte 29001 bis 30000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 35 von 540 (Punkte 34001 bis 35000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 40 von 540 (Punkte 39001 bis 40000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 45 von 540 (Punkte 44001 bis 45000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 50 von 540 (Punkte 49001 bis 50000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 55 von 540 (Punkte 54001 bis 55000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 60 von 540 (Punkte 59001 bis 60000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 65 von 540 (Punkte 64001 bis 65000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 70 von 540 (Punkte 69001 bis 70000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 75 von 540 (Punkte 74001 bis 75000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 80 von 540 (Punkte 79001 bis 80000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 85 von 540 (Punkte 84001 bis 85000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 90 von 540 (Punkte 89001 bis 90000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 95 von 540 (Punkte 94001 bis 95000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 100 von 540 (Punkte 99001 bis 100000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 105 von 540 (Punkte 104001 bis 105000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 110 von 540 (Punkte 109001 bis 110000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 115 von 540 (Punkte 114001 bis 115000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 120 von 540 (Punkte 119001 bis 120000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 125 von 540 (Punkte 124001 bis 125000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 130 von 540 (Punkte 129001 bis 130000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 135 von 540 (Punkte 134001 bis 135000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 140 von 540 (Punkte 139001 bis 140000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 145 von 540 (Punkte 144001 bis 145000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 150 von 540 (Punkte 149001 bis 150000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 155 von 540 (Punkte 154001 bis 155000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 160 von 540 (Punkte 159001 bis 160000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 165 von 540 (Punkte 164001 bis 165000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 170 von 540 (Punkte 169001 bis 170000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 175 von 540 (Punkte 174001 bis 175000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 180 von 540 (Punkte 179001 bis 180000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 185 von 540 (Punkte 184001 bis 185000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 190 von 540 (Punkte 189001 bis 190000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 195 von 540 (Punkte 194001 bis 195000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 200 von 540 (Punkte 199001 bis 200000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 205 von 540 (Punkte 204001 bis 205000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 210 von 540 (Punkte 209001 bis 210000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 215 von 540 (Punkte 214001 bis 215000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 220 von 540 (Punkte 219001 bis 220000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 225 von 540 (Punkte 224001 bis 225000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 230 von 540 (Punkte 229001 bis 230000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 235 von 540 (Punkte 234001 bis 235000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 240 von 540 (Punkte 239001 bis 240000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 245 von 540 (Punkte 244001 bis 245000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 250 von 540 (Punkte 249001 bis 250000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 255 von 540 (Punkte 254001 bis 255000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 260 von 540 (Punkte 259001 bis 260000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 265 von 540 (Punkte 264001 bis 265000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 270 von 540 (Punkte 269001 bis 270000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 275 von 540 (Punkte 274001 bis 275000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 280 von 540 (Punkte 279001 bis 280000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 285 von 540 (Punkte 284001 bis 285000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 290 von 540 (Punkte 289001 bis 290000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 295 von 540 (Punkte 294001 bis 295000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 300 von 540 (Punkte 299001 bis 300000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 305 von 540 (Punkte 304001 bis 305000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 310 von 540 (Punkte 309001 bis 310000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 315 von 540 (Punkte 314001 bis 315000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 320 von 540 (Punkte 319001 bis 320000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 325 von 540 (Punkte 324001 bis 325000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 330 von 540 (Punkte 329001 bis 330000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 335 von 540 (Punkte 334001 bis 335000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 340 von 540 (Punkte 339001 bis 340000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 345 von 540 (Punkte 344001 bis 345000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 350 von 540 (Punkte 349001 bis 350000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 355 von 540 (Punkte 354001 bis 355000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 360 von 540 (Punkte 359001 bis 360000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 365 von 540 (Punkte 364001 bis 365000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 370 von 540 (Punkte 369001 bis 370000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 375 von 540 (Punkte 374001 bis 375000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 380 von 540 (Punkte 379001 bis 380000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 385 von 540 (Punkte 384001 bis 385000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 390 von 540 (Punkte 389001 bis 390000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 395 von 540 (Punkte 394001 bis 395000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 400 von 540 (Punkte 399001 bis 400000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 405 von 540 (Punkte 404001 bis 405000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 410 von 540 (Punkte 409001 bis 410000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 415 von 540 (Punkte 414001 bis 415000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 420 von 540 (Punkte 419001 bis 420000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 425 von 540 (Punkte 424001 bis 425000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 430 von 540 (Punkte 429001 bis 430000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 435 von 540 (Punkte 434001 bis 435000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 440 von 540 (Punkte 439001 bis 440000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 445 von 540 (Punkte 444001 bis 445000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 450 von 540 (Punkte 449001 bis 450000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 455 von 540 (Punkte 454001 bis 455000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 460 von 540 (Punkte 459001 bis 460000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 465 von 540 (Punkte 464001 bis 465000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 470 von 540 (Punkte 469001 bis 470000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 475 von 540 (Punkte 474001 bis 475000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 480 von 540 (Punkte 479001 bis 480000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 485 von 540 (Punkte 484001 bis 485000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 490 von 540 (Punkte 489001 bis 490000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 495 von 540 (Punkte 494001 bis 495000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 500 von 540 (Punkte 499001 bis 500000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 505 von 540 (Punkte 504001 bis 505000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 510 von 540 (Punkte 509001 bis 510000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 515 von 540 (Punkte 514001 bis 515000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 520 von 540 (Punkte 519001 bis 520000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 525 von 540 (Punkte 524001 bis 525000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 530 von 540 (Punkte 529001 bis 530000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 535 von 540 (Punkte 534001 bis 535000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ B: Verarbeite Batch 540 von 540 (Punkte 539001 bis 539444)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>---- Fertig mit Typ B ----</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+---- Verarbeite Straßentyp: K ----</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Straßen gefunden: 694 - Starte Berechnung...</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 1 von 540 (Punkte 1 bis 1000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 5 von 540 (Punkte 4001 bis 5000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 10 von 540 (Punkte 9001 bis 10000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 15 von 540 (Punkte 14001 bis 15000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 20 von 540 (Punkte 19001 bis 20000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 25 von 540 (Punkte 24001 bis 25000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 30 von 540 (Punkte 29001 bis 30000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 35 von 540 (Punkte 34001 bis 35000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 40 von 540 (Punkte 39001 bis 40000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 45 von 540 (Punkte 44001 bis 45000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 50 von 540 (Punkte 49001 bis 50000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 55 von 540 (Punkte 54001 bis 55000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 60 von 540 (Punkte 59001 bis 60000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 65 von 540 (Punkte 64001 bis 65000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 70 von 540 (Punkte 69001 bis 70000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 75 von 540 (Punkte 74001 bis 75000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 80 von 540 (Punkte 79001 bis 80000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 85 von 540 (Punkte 84001 bis 85000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 90 von 540 (Punkte 89001 bis 90000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 95 von 540 (Punkte 94001 bis 95000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 100 von 540 (Punkte 99001 bis 100000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 105 von 540 (Punkte 104001 bis 105000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 110 von 540 (Punkte 109001 bis 110000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 115 von 540 (Punkte 114001 bis 115000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 120 von 540 (Punkte 119001 bis 120000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 125 von 540 (Punkte 124001 bis 125000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 130 von 540 (Punkte 129001 bis 130000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 135 von 540 (Punkte 134001 bis 135000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 140 von 540 (Punkte 139001 bis 140000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 145 von 540 (Punkte 144001 bis 145000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 150 von 540 (Punkte 149001 bis 150000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 155 von 540 (Punkte 154001 bis 155000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 160 von 540 (Punkte 159001 bis 160000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 165 von 540 (Punkte 164001 bis 165000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 170 von 540 (Punkte 169001 bis 170000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 175 von 540 (Punkte 174001 bis 175000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 180 von 540 (Punkte 179001 bis 180000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 185 von 540 (Punkte 184001 bis 185000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 190 von 540 (Punkte 189001 bis 190000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 195 von 540 (Punkte 194001 bis 195000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 200 von 540 (Punkte 199001 bis 200000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 205 von 540 (Punkte 204001 bis 205000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 210 von 540 (Punkte 209001 bis 210000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 215 von 540 (Punkte 214001 bis 215000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 220 von 540 (Punkte 219001 bis 220000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 225 von 540 (Punkte 224001 bis 225000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 230 von 540 (Punkte 229001 bis 230000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 235 von 540 (Punkte 234001 bis 235000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 240 von 540 (Punkte 239001 bis 240000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 245 von 540 (Punkte 244001 bis 245000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 250 von 540 (Punkte 249001 bis 250000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 255 von 540 (Punkte 254001 bis 255000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 260 von 540 (Punkte 259001 bis 260000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 265 von 540 (Punkte 264001 bis 265000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 270 von 540 (Punkte 269001 bis 270000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 275 von 540 (Punkte 274001 bis 275000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 280 von 540 (Punkte 279001 bis 280000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 285 von 540 (Punkte 284001 bis 285000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 290 von 540 (Punkte 289001 bis 290000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 295 von 540 (Punkte 294001 bis 295000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 300 von 540 (Punkte 299001 bis 300000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 305 von 540 (Punkte 304001 bis 305000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 310 von 540 (Punkte 309001 bis 310000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 315 von 540 (Punkte 314001 bis 315000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 320 von 540 (Punkte 319001 bis 320000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 325 von 540 (Punkte 324001 bis 325000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 330 von 540 (Punkte 329001 bis 330000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 335 von 540 (Punkte 334001 bis 335000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 340 von 540 (Punkte 339001 bis 340000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 345 von 540 (Punkte 344001 bis 345000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 350 von 540 (Punkte 349001 bis 350000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 355 von 540 (Punkte 354001 bis 355000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 360 von 540 (Punkte 359001 bis 360000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 365 von 540 (Punkte 364001 bis 365000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 370 von 540 (Punkte 369001 bis 370000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 375 von 540 (Punkte 374001 bis 375000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 380 von 540 (Punkte 379001 bis 380000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 385 von 540 (Punkte 384001 bis 385000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 390 von 540 (Punkte 389001 bis 390000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 395 von 540 (Punkte 394001 bis 395000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 400 von 540 (Punkte 399001 bis 400000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 405 von 540 (Punkte 404001 bis 405000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 410 von 540 (Punkte 409001 bis 410000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 415 von 540 (Punkte 414001 bis 415000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 420 von 540 (Punkte 419001 bis 420000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 425 von 540 (Punkte 424001 bis 425000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 430 von 540 (Punkte 429001 bis 430000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 435 von 540 (Punkte 434001 bis 435000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 440 von 540 (Punkte 439001 bis 440000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 445 von 540 (Punkte 444001 bis 445000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 450 von 540 (Punkte 449001 bis 450000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 455 von 540 (Punkte 454001 bis 455000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 460 von 540 (Punkte 459001 bis 460000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 465 von 540 (Punkte 464001 bis 465000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 470 von 540 (Punkte 469001 bis 470000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 475 von 540 (Punkte 474001 bis 475000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 480 von 540 (Punkte 479001 bis 480000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 485 von 540 (Punkte 484001 bis 485000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 490 von 540 (Punkte 489001 bis 490000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 495 von 540 (Punkte 494001 bis 495000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 500 von 540 (Punkte 499001 bis 500000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 505 von 540 (Punkte 504001 bis 505000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 510 von 540 (Punkte 509001 bis 510000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 515 von 540 (Punkte 514001 bis 515000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 520 von 540 (Punkte 519001 bis 520000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 525 von 540 (Punkte 524001 bis 525000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 530 von 540 (Punkte 529001 bis 530000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 535 von 540 (Punkte 534001 bis 535000)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  -&gt; Typ K: Verarbeite Batch 540 von 540 (Punkte 539001 bis 539444)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>---- Fertig mit Typ K ----</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb469"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb469-1"><a href="#cb469-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Zusammenfassung berechnen</span></span>
+<span id="cb469-2"><a href="#cb469-2" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">---- Berechne Minimum und Gattung ----"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+---- Berechne Minimum und Gattung ----</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb471"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb471-1"><a href="#cb471-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dataframe ohne Geometrie für Speed</span></span>
+<span id="cb471-2"><a href="#cb471-2" aria-hidden="true" tabindex="-1"></a>df_temp <span class="ot">&lt;-</span> <span class="fu">st_drop_geometry</span>(fassadenpunkte_erweitert)</span>
+<span id="cb471-3"><a href="#cb471-3" aria-hidden="true" tabindex="-1"></a>dist_cols <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">"^dist_"</span>, <span class="fu">names</span>(df_temp), <span class="at">value =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb471-4"><a href="#cb471-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb471-5"><a href="#cb471-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">length</span>(dist_cols) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb471-6"><a href="#cb471-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Minimum über die Spalten</span></span>
+<span id="cb471-7"><a href="#cb471-7" aria-hidden="true" tabindex="-1"></a>  fassadenpunkte_erweitert<span class="sc">$</span>mindist <span class="ot">&lt;-</span> <span class="fu">do.call</span>(pmin, <span class="fu">c</span>(df_temp[dist_cols], <span class="fu">list</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span>
+<span id="cb471-8"><a href="#cb471-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb471-9"><a href="#cb471-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Gattung bestimmen</span></span>
+<span id="cb471-10"><a href="#cb471-10" aria-hidden="true" tabindex="-1"></a>  fassadenpunkte_erweitert<span class="sc">$</span>gattung <span class="ot">&lt;-</span> <span class="fu">apply</span>(df_temp[dist_cols], <span class="dv">1</span>, <span class="cf">function</span>(x) {</span>
+<span id="cb471-11"><a href="#cb471-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">all</span>(<span class="fu">is.na</span>(x))) <span class="fu">return</span>(<span class="cn">NA</span>)</span>
+<span id="cb471-12"><a href="#cb471-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Name der Spalte mit dem Minimum, "dist_" entfernen</span></span>
+<span id="cb471-13"><a href="#cb471-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sub</span>(<span class="st">"dist_"</span>, <span class="st">""</span>, <span class="fu">names</span>(x)[<span class="fu">which.min</span>(x)])</span>
+<span id="cb471-14"><a href="#cb471-14" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb471-15"><a href="#cb471-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb471-16"><a href="#cb471-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb471-17"><a href="#cb471-17" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"Speichere finale Datei..."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Speichere finale Datei...</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb473"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb473-1"><a href="#cb473-1" aria-hidden="true" tabindex="-1"></a><span class="fu">st_write</span>(fassadenpunkte_erweitert, <span class="at">dsn =</span> ausgabepfad_strabst, <span class="at">delete_dsn =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Deleting source `N:/4all.i4/I4.9 - Umweltbezogene Krankheitslast/04 - Daten/Lärm/Mainz-Bingen/Fassadenpunkte_mit_allen_Abstaenden.gpkg' failed
+Writing layer `Fassadenpunkte_mit_allen_Abstaenden' to data source 
+  `N:/4all.i4/I4.9 - Umweltbezogene Krankheitslast/04 - Daten/Lärm/Mainz-Bingen/Fassadenpunkte_mit_allen_Abstaenden.gpkg' using driver `GPKG'
+Writing 539444 features with 16 fields and geometry type Point.</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb475"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb475-1"><a href="#cb475-1" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"---- SKRIPT TEIL ERFOLGREICH BEENDET ----"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>---- SKRIPT TEIL ERFOLGREICH BEENDET ----</code></pre>
 </div>
 </div>
 <p>Der mittlere Abstand (gemittelt über alle Fassadenpunkte eines Hauses) zur nächsten Straße mit Straßenverkehr kommt in folgenden Quantilsabständen vor:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>hausstatistik<span class="ot">&lt;-</span>fassadenpunkte_strasse24_m_abs <span class="sc">%&gt;%</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_drop_geometry</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(NAME) <span class="sc">%&gt;%</span> </span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_strabst=</span><span class="fu">mean</span>(strabst, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">max=</span><span class="fu">max</span>(LDEN, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">min=</span><span class="fu">min</span>(LDEN,<span class="at">na.rm =</span> <span class="cn">TRUE</span>))<span class="sc">%&gt;%</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="fu">c</span>(max,min),</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to=</span><span class="st">"lautester_leisester"</span>,</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to=</span><span class="st">"LDEN"</span>)</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>hausstatistik <span class="sc">%&gt;%</span> </span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(lautester_leisester <span class="sc">==</span> <span class="st">"max"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(mean_strabst) <span class="sc">%&gt;%</span></span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">quantile</span>(<span class="fu">c</span>(<span class="fl">0.05</span>,<span class="fl">0.1</span>,<span class="fl">0.25</span>,<span class="fl">0.5</span>,<span class="fl">0.75</span>), <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb477"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb477-1"><a href="#cb477-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nutzung von 'mindist' und 'gattung' (kurze Namen für Shapefiles)</span></span>
+<span id="cb477-2"><a href="#cb477-2" aria-hidden="true" tabindex="-1"></a>hausstatistik <span class="ot">&lt;-</span> fassadenpunkte_erweitert <span class="sc">%&gt;%</span></span>
+<span id="cb477-3"><a href="#cb477-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_drop_geometry</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb477-4"><a href="#cb477-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(NAME) <span class="sc">%&gt;%</span> </span>
+<span id="cb477-5"><a href="#cb477-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_strabst =</span> <span class="fu">mean</span>(mindist, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb477-6"><a href="#cb477-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">dominante_gattung =</span> <span class="fu">first</span>(gattung),</span>
+<span id="cb477-7"><a href="#cb477-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">max =</span> <span class="fu">max</span>(LDEN, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb477-8"><a href="#cb477-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">min =</span> <span class="fu">min</span>(LDEN, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb477-9"><a href="#cb477-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="fu">c</span>(max,min),</span>
+<span id="cb477-10"><a href="#cb477-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to=</span><span class="st">"lautester_leisester"</span>,</span>
+<span id="cb477-11"><a href="#cb477-11" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to=</span><span class="st">"LDEN"</span>)</span>
+<span id="cb477-12"><a href="#cb477-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb477-13"><a href="#cb477-13" aria-hidden="true" tabindex="-1"></a>hausstatistik <span class="sc">%&gt;%</span> </span>
+<span id="cb477-14"><a href="#cb477-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(lautester_leisester <span class="sc">==</span> <span class="st">"max"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb477-15"><a href="#cb477-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(mean_strabst) <span class="sc">%&gt;%</span></span>
+<span id="cb477-16"><a href="#cb477-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">quantile</span>(<span class="fu">c</span>(<span class="fl">0.05</span>,<span class="fl">0.1</span>,<span class="fl">0.25</span>,<span class="fl">0.5</span>,<span class="fl">0.75</span>), <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        5%        10%        25%        50%        75% 
   9.507133  16.789413  58.242102 137.059845 263.788281 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb479"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb479-1"><a href="#cb479-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Kurze Tabelle der Gattungen anzeigen</span></span>
+<span id="cb479-2"><a href="#cb479-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(hausstatistik<span class="sc">$</span>dominante_gattung)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    A     B     K     L 
+ 1448 10272 35406 68434 </code></pre>
 </div>
 </div>
 <p>Dabei ist zu beachten, dass es sich hier wohl nicht um einen vollständigen Fassadenpunkt-Datensatz handelt, sondern schätzungsweise 10 % der Häuser nicht enthalten sind. Das liegt daran, dass nur Fassadenpunkte mit hinreichend hohem berechneten Straßenlärmpegel exportiert wurden.</p>
 <p>Der Zusammenhang zwischen Abstand zur nächsten Straße und dem berechneten LDEN-Pegel an den Fassadenpunkten sieht so aus:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>breaks <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">3000</span>,<span class="at">by=</span><span class="dv">10</span>)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>entf_stat<span class="ot">&lt;-</span>hausstatistik <span class="sc">%&gt;%</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(lautester_leisester <span class="sc">==</span> <span class="st">"max"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">abst_start =</span> breaks[<span class="fu">findInterval</span>(mean_strabst, breaks)], <span class="at">abst_end =</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>           breaks[<span class="fu">findInterval</span>(mean_strabst, breaks) <span class="sc">+</span> <span class="dv">1</span>]) <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(abst_start,abst_end) <span class="sc">%&gt;%</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Anzahl =</span> <span class="fu">n</span>(),</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">gemittelter_lautester_LDEN =</span> <span class="fu">mean</span>(LDEN, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb481"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb481-1"><a href="#cb481-1" aria-hidden="true" tabindex="-1"></a>breaks <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">3000</span>,<span class="at">by=</span><span class="dv">10</span>)</span>
+<span id="cb481-2"><a href="#cb481-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb481-3"><a href="#cb481-3" aria-hidden="true" tabindex="-1"></a>entf_stat<span class="ot">&lt;-</span>hausstatistik <span class="sc">%&gt;%</span></span>
+<span id="cb481-4"><a href="#cb481-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(lautester_leisester <span class="sc">==</span> <span class="st">"max"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb481-5"><a href="#cb481-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">abst_start =</span> breaks[<span class="fu">findInterval</span>(mean_strabst, breaks)], <span class="at">abst_end =</span></span>
+<span id="cb481-6"><a href="#cb481-6" aria-hidden="true" tabindex="-1"></a>           breaks[<span class="fu">findInterval</span>(mean_strabst, breaks) <span class="sc">+</span> <span class="dv">1</span>]) <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(abst_start,abst_end) <span class="sc">%&gt;%</span></span>
+<span id="cb481-7"><a href="#cb481-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Anzahl =</span> <span class="fu">n</span>(),</span>
+<span id="cb481-8"><a href="#cb481-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">gemittelter_lautester_LDEN =</span> <span class="fu">mean</span>(LDEN, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`summarise()` has grouped output by 'abst_start'. You can override using the
 `.groups` argument.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>entf_stat<span class="sc">%&gt;%</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(abst_start) <span class="sc">%&gt;%</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">kumulativer_Anteil =</span> <span class="fu">cumsum</span>(Anzahl)) <span class="sc">%&gt;%</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">kumulativer_Anteil=</span>kumulativer_Anteil<span class="sc">/</span><span class="fu">max</span>(kumulativer_Anteil),<span class="at">.after=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="fu">c</span>(gemittelter_lautester_LDEN, Anzahl,kumulativer_Anteil),</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to=</span><span class="st">"variable"</span>,</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to=</span><span class="st">"wert"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_step</span>(<span class="fu">aes</span>(<span class="at">x =</span> abst_start, <span class="at">y =</span> wert))<span class="sc">+</span></span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="fu">vars</span>(variable), <span class="at">scales=</span><span class="st">"free_y"</span>)<span class="sc">+</span> </span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Abstand zur nächsten Straße mit Straßenverkehr [m]"</span>) <span class="sc">+</span></span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Anzahl der Häuser / kumulierter Anteil Gebäude / mittlerer maximaler LDEN [dB(A)]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb483"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb483-1"><a href="#cb483-1" aria-hidden="true" tabindex="-1"></a>entf_stat<span class="sc">%&gt;%</span></span>
+<span id="cb483-2"><a href="#cb483-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb483-3"><a href="#cb483-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(abst_start) <span class="sc">%&gt;%</span></span>
+<span id="cb483-4"><a href="#cb483-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">kumulativer_Anteil =</span> <span class="fu">cumsum</span>(Anzahl)) <span class="sc">%&gt;%</span></span>
+<span id="cb483-5"><a href="#cb483-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">kumulativer_Anteil=</span>kumulativer_Anteil<span class="sc">/</span><span class="fu">max</span>(kumulativer_Anteil),<span class="at">.after=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb483-6"><a href="#cb483-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="fu">c</span>(gemittelter_lautester_LDEN, Anzahl,kumulativer_Anteil),</span>
+<span id="cb483-7"><a href="#cb483-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to=</span><span class="st">"variable"</span>,</span>
+<span id="cb483-8"><a href="#cb483-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to=</span><span class="st">"wert"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb483-9"><a href="#cb483-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb483-10"><a href="#cb483-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_step</span>(<span class="fu">aes</span>(<span class="at">x =</span> abst_start, <span class="at">y =</span> wert))<span class="sc">+</span></span>
+<span id="cb483-11"><a href="#cb483-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="fu">vars</span>(variable), <span class="at">scales=</span><span class="st">"free_y"</span>)<span class="sc">+</span> </span>
+<span id="cb483-12"><a href="#cb483-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Abstand zur nächsten Straße mit Straßenverkehr [m]"</span>) <span class="sc">+</span></span>
+<span id="cb483-13"><a href="#cb483-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Anzahl der Häuser / kumulierter Anteil Gebäude / mittlerer maximaler LDEN [dB(A)]"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -398,18 +1845,19 @@ not be emitted anymore.</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>hausstatistik <span class="sc">%&gt;%</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">prop =</span> plot_anteil) <span class="sc">%&gt;%</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> mean_strabst, <span class="at">y =</span> LDEN, <span class="at">color =</span> lautester_leisester),</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">1</span>,</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.3</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Abstand zur nächsten Straße mit Straßenverkehr [m]"</span>) <span class="sc">+</span></span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"berechneter Fassadenpegel LDEN [dB(A)]"</span>) <span class="sc">+</span></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( <span class="sc">~</span> lautester_leisester) <span class="sc">+</span></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">guide =</span> <span class="st">"axis_logticks"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb484"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb484-1"><a href="#cb484-1" aria-hidden="true" tabindex="-1"></a>hausstatistik <span class="sc">%&gt;%</span></span>
+<span id="cb484-2"><a href="#cb484-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">prop =</span> plot_anteil) <span class="sc">%&gt;%</span></span>
+<span id="cb484-3"><a href="#cb484-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb484-4"><a href="#cb484-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb484-5"><a href="#cb484-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> mean_strabst, <span class="at">y =</span> LDEN, <span class="at">color =</span> lautester_leisester, <span class="at">shape =</span> dominante_gattung),</span>
+<span id="cb484-6"><a href="#cb484-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">1</span>,</span>
+<span id="cb484-7"><a href="#cb484-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.5</span></span>
+<span id="cb484-8"><a href="#cb484-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb484-9"><a href="#cb484-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Abstand zur nächsten Straße mit Straßenverkehr [m]"</span>) <span class="sc">+</span></span>
+<span id="cb484-10"><a href="#cb484-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"berechneter Fassadenpegel LDEN [dB(A)]"</span>) <span class="sc">+</span></span>
+<span id="cb484-11"><a href="#cb484-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( <span class="sc">~</span> lautester_leisester) <span class="sc">+</span></span>
+<span id="cb484-12"><a href="#cb484-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">guide =</span> <span class="st">"axis_logticks"</span>) <span class="sc">+</span></span>
+<span id="cb484-13"><a href="#cb484-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">shape =</span> <span class="st">"Straßengattung"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -423,15 +1871,9 @@ not be emitted anymore.</code></pre>
 </section>
 <section id="fassadenpunkte-exportiert-2025" class="level2">
 <h2 class="anchored" data-anchor-id="fassadenpunkte-exportiert-2025">Fassadenpunkte exportiert 2025</h2>
-<p>Die Datei</p>
+<p>Die Datei ../Fassadenpunkte_EBA.gpkg wurde im Dezember 2025 gesendet von Nathalie Paris, LfU. Sie besteht aus einer gpkg-Datei mit folgenden Layern:</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "../Fassadenpunkte_EBA.gpkg"</code></pre>
-</div>
-</div>
-<p>wurde im Dezember 2025 gesendet von Nathalie Paris, LfU. Sie besteht aus einer gpkg-Datei mit folgenden Layern:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">st_layers</span>(<span class="fu">here</span>(pfad_fassadenpunkte_2025))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb485"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb485-1"><a href="#cb485-1" aria-hidden="true" tabindex="-1"></a><span class="fu">st_layers</span>(<span class="fu">here</span>(eingabepfad_fasp_2025))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Driver: GPKG 
 Available layers:
@@ -481,13 +1923,13 @@ Projected CRS: ETRS89 / UTM zone 32N</code></pre>
 </div>
 <p>Die Fassenpunkte EBA sehen so aus:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>fassadenpunkte_EBA <span class="sc">%&gt;%</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">prop =</span> plot_anteil) <span class="sc">%&gt;%</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(    <span class="co"># precise that it will be a spatial geometry</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(                  <span class="co"># provide some aesthetics</span></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">geometry =</span> geom,</span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">color=</span>AGS))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb489"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb489-1"><a href="#cb489-1" aria-hidden="true" tabindex="-1"></a>fassadenpunkte_EBA <span class="sc">%&gt;%</span></span>
+<span id="cb489-2"><a href="#cb489-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">prop =</span> plot_anteil) <span class="sc">%&gt;%</span></span>
+<span id="cb489-3"><a href="#cb489-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb489-4"><a href="#cb489-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(    <span class="co"># precise that it will be a spatial geometry</span></span>
+<span id="cb489-5"><a href="#cb489-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(                  <span class="co"># provide some aesthetics</span></span>
+<span id="cb489-6"><a href="#cb489-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">geometry =</span> geom,</span>
+<span id="cb489-7"><a href="#cb489-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">color=</span>AGS))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -565,13 +2007,14 @@ Projected CRS: ETRS89 / UTM zone 32N</code></pre>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
