@@ -396,7 +396,7 @@ Sie enthalten neben den Fassadenpunkten aus dem Landkreis Mainz-Bingen offenbar 
 
 ## Zusammenschau der Fassadenpunkte 2024 und 2025 mit Straßennetz
 
-![](Fassadenpunkte%20Schiene%20und%20Straße.png)
+![Zusammenschau Schienenlärm- und Straßenlärmfassadenpunkte](externe_Bilder/FassadenpunkteSchieneuStraße.png)
 
 In dieser mit ArcGIS erstellten Karte sieht man, die Schienenfassadenpunkte (Kreuze; enthalten keine Adressdaten), die Straßenfassadenpunkte (Kreise, enthalten Adressdaten) zum Teil recht genau überlappen, es aber auch u.a. Gebäude nur mit einem der beiden Punkten gibt. Die Zahlen geben die in R berechneten Abstände zu den Straßen aus dem Verkehrsmodell an. Man sieht, dass es durchaus Fälle gibt, in denen die nicht modellierten Nebenstraßen die dominierende Quelle wären-\> Expositions-Misklassifikation.
 
