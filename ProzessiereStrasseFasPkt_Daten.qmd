@@ -127,25 +127,30 @@ plStrNetz22 +
 
 ```
 
-### Zusammenhang Abstand und Pegel
+Die Straßen haben verschiedene Baulastträger bzw. Bezeichnungen:
 
-Es könnte sein, dass Fassadenpunkte nahe an nicht kartierten Straßen liegen, die faktisch deren Immissionspegel dominieren - somit würden die Pegel im vorliegenden Modell unterschätzt.
-
-```{r strassennetz_auftrennen}
+```{r strassenart}
 strNetz22<-
   strNetz22 %>% 
   mutate(str_art=str_sub(STRASSE,1,1))# das hier extrahiert einfach den ersten Buchstaben: also A, B, K oder L
+strNetz22$str_art %>% 
+  unique()
 
 ```
 
+
+
+### Zusammenhang Abstand und Pegel
+
+Es könnte sein, dass Fassadenpunkte nahe an nicht kartierten Straßen liegen, die faktisch deren Immissionspegel dominieren - somit würden die Pegel im vorliegenden Modell unterschätzt.
 Um das untersuchen zu können, wird hier der Abstand der Fassadenpunkte zur nächsten Straße im Straßennetz berechnet.
-Die Ergebnisse werden dann zu den Fassadenpunkten hinzugefügt und wieder als Shapedatei abgespeichert.
+Die Ergebnisse werden dann zu den Fassadenpunkten hinzugefügt und wieder als Shapedatei `{r} ausgabepfad_strabst` abgespeichert.
 
 
 ```{r ermittle_strassenabstand}
-# Pfad für die Ausgabedatei
-
-ausgabepfad_strabst
+# recht Rechenaufwändiger Schritt (ca. 15 min)
+# zum Probieren kann hier ein kleinerer Anteil der Fassadenpunkte verwendet werden
+verwendeter_anteil<-1 # muss 1 sein, wenn alles verwendet wird; zum Spielen ginge z.B. 0.01
 
 # Alte Dateien löschen für sauberen Neustart
 if (file.exists(ausgabepfad_strabst)) {
@@ -163,6 +168,7 @@ message("---- START: Datenvorbereitung ----")
 # 1. Fassadenpunkte vorbereiten (Geometrie reparieren + Z-Werte entfernen)
 # Das verhindert GEOS-Fehler
 fassadenpunkte_erweitert <- fassadenpunkte_strasse24 %>% 
+  slice_sample(prop=verwendeter_anteil) %>% 
   st_zm(drop = TRUE, what = "ZM") %>% 
   st_make_valid() 
 
@@ -294,41 +300,46 @@ breaks <- seq(0,3000,by=10)
 
 entf_stat<-hausstatistik %>%
   filter(lautester_leisester == "max") %>%
-  mutate(abst_start = breaks[findInterval(mean_strabst, breaks)], abst_end =
-           breaks[findInterval(mean_strabst, breaks) + 1]) %>% group_by(abst_start,abst_end) %>%
+  mutate(abst_start = breaks[findInterval(mean_strabst, breaks)],
+         abst_end =
+           breaks[findInterval(mean_strabst, breaks) + 1]) %>%
+  group_by(dominante_gattung,abst_start,abst_end) %>%
   summarise(Anzahl = n(),
             gemittelter_lautester_LDEN = mean(LDEN, na.rm = TRUE))
 
 entf_stat%>%
   ungroup() %>% 
-  arrange(abst_start) %>%
+  group_by(dominante_gattung) %>% 
+  arrange(abst_start,.by_group = TRUE) %>%
   mutate(kumulativer_Anteil = cumsum(Anzahl)) %>%
   mutate(kumulativer_Anteil=kumulativer_Anteil/max(kumulativer_Anteil),.after=1) %>% 
   pivot_longer(cols=c(gemittelter_lautester_LDEN, Anzahl,kumulativer_Anteil),
                names_to="variable",
                values_to="wert") %>%
   ggplot() +
-  geom_step(aes(x = abst_start, y = wert))+
+  geom_step(aes(x = abst_start, y = wert,color = dominante_gattung))+
   facet_grid(vars(variable), scales="free_y")+ 
   xlab("Abstand zur nächsten Straße mit Straßenverkehr [m]") +
   ylab("Anzahl der Häuser / kumulierter Anteil Gebäude / mittlerer maximaler LDEN [dB(A)]")
 
 ```
 
+
 ```{r plotte_abstand_pegel}
 hausstatistik %>%
   slice_sample(prop = plot_anteil) %>%
   ggplot() +
   geom_point(
-    aes(x = mean_strabst, y = LDEN, color = lautester_leisester, shape = dominante_gattung),
+    aes(x = mean_strabst, y = LDEN, color = dominante_gattung),
     size = 1,
-    alpha = 0.5
+    alpha = 0.5,
+    shape = 20
   ) +
   xlab("Abstand zur nächsten Straße mit Straßenverkehr [m]") +
   ylab("berechneter Fassadenpegel LDEN [dB(A)]") +
   facet_wrap( ~ lautester_leisester) +
   scale_x_log10(guide = "axis_logticks") +
-  labs(shape = "Straßengattung")
+  labs(color = "Straßengattung\nderen Beitrag\ndominiert")
 
 ```
 
