@@ -15,6 +15,28 @@ library(tmap)
 library(nngeo)
 ```
 
+## Vorbemerkung Dateipfade
+Da dieses Projekt von verschiedenen Menschen auf verschiedenen Computersystemen verwendet wird, sind hier alle im Projekt verwendeten Pfade versammelt, sodass sie ggf. leicht angepasst werden können:
+
+```{r pfade}
+daten_ordner_pfad <-
+  "N:/4all.i4/I4.9 - Umweltbezogene Krankheitslast/04 - Daten/Lärm/Mainz-Bingen/"
+#  das hier ist vermutlich von Tim: "D:/Mainz-Bingen/"
+
+ausgabepfad_strabst <-
+  paste0(daten_ordner_pfad,                                "Fassadenpunkte_mit_allen_Abstaenden.gpkg")
+
+eingabepfad_strassennetz <-
+  paste0(daten_ordner_pfad,                               
+  "Strassennetz_LK22.gpkg")
+
+eingabepfad_fasp_2024 <-
+  paste0(daten_ordner_pfad,
+         "Fassadenpunkte.shp")
+
+eingabepfad_fasp_2025 <- "../Fassadenpunkte_EBA.gpkg"
+```
+
 ## Hoffnungen und Ziele
 
 Das LfU hat im Dezember 2025 Dateien geschickt, die für die weitere Analyse der Umgebungslärmkartierung Mainz-Bingen wichtig sind. Damals hatte ich die folgende Hoffnungen:
@@ -27,20 +49,10 @@ Im Folgenden die etwas tiefergehende Analyse dieser Dateien.
 
 ## Straßennetz Umgebungslärmkartierung Mainz-Bingen
 
-Die Datei
-
-```{r strasse_datei}
-#| echo: false
-
-pfad_strassennetz<-"D:/Mainz-Bingen/Strassennetz_LK22.gpkg"
-pfad_strassennetz
-
-```
-
-wurde im Dezember 2025 gesendet von Nathalie Paris, LfU. Die Datei wird hier in R untersucht. Die Datei sollte alle mit Straßenverkehr belegten Straßen aus dem für die Umgebungslärmkartierung verwendeten Straßenverkehrsmodell beinhalten. Sie besteht aus einem Geopackage mit folgenden Layern:
+Die Datei `{r} eingabepfad_strassennetz` wurde im Dezember 2025 gesendet von Nathalie Paris, LfU. Die Datei wird hier in R untersucht. Die Datei sollte alle mit Straßenverkehr belegten Straßen aus dem für die Umgebungslärmkartierung verwendeten Straßenverkehrsmodell beinhalten. Sie besteht aus einem Geopackage mit folgenden Layern:
 
 ```{r vorhandene_layer_str}
-st_layers(pfad_strassennetz)
+st_layers(eingabepfad_strassennetz)
 ```
 
 Der Layer `strassennetz_lk22` enthält die Straßengeometrien:
@@ -48,7 +60,7 @@ Der Layer `strassennetz_lk22` enthält die Straßengeometrien:
 ```{r strasse_einlesen}
 #| echo: false
 
-strNetz22 <- st_read(dsn=pfad_strassennetz, layer="strassennetz_lk22") %>% 
+strNetz22 <- st_read(dsn=eingabepfad_strassennetz, layer="strassennetz_lk22") %>% 
   st_transform(25832)
 
 # Extraktion der Straßengattung (erster Buchstabe aus STRASSE)
@@ -75,30 +87,22 @@ plStrNetz22
 
 ## Fassadenpunkte exportiert 2024
 
-Die Datei
-
-```{r datei_fp2024}
-#| echo: false
-
-pfad_fassadenpunkte_2024<-"D:/Mainz-Bingen/Fassadenpunkte.shp"
-pfad_fassadenpunkte_2024
-
-```
-
-wurde schon im Dezember 2024 gesendet von Nathalie Paris, LfU. Sie besteht aus einer Shapedatei mit folgenden Layern:
+Die Datei `{r} eingabepfad_fasp_2024` wurde schon im Dezember 2024 gesendet von Nathalie Paris, LfU. Sie besteht aus einer Shapedatei mit folgenden Layern:
 
 ```{r layer_fp2024}
-st_layers(pfad_fassadenpunkte_2024)
+st_layers(eingabepfad_fasp_2024)
 ```
 
 Der Layer `Fassadenpunkte` enthält die Straßengeometrien:
 
 ```{r einlesen_fp2024}
 #| echo: false
-fassadenpunkte_strasse24<-st_read(dsn=pfad_fassadenpunkte_2024)%>% 
+fassadenpunkte_strasse24<-st_read(dsn=eingabepfad_fasp_2024)%>% 
   st_transform(25832)
 summary(fassadenpunkte_strasse24)
 ```
+
+und sieht so aus:
 
 ```{r fassadenpunkte_plot2024}
 plot_anteil<-0.1
@@ -125,27 +129,29 @@ plStrNetz22 +
 
 ### Zusammenhang Abstand und Pegel
 
-Es könnte sein, dass Fassadenpunkte nahe an nicht kartierten Straßen liegen, die faktisch deren Immissionspegel dominieren - somit würden die Pegel im vorliegenden Modell unterschätzt. Um das untersuchen zu können, wird hier der Abstand der Fassadenpunkte zur nächsten Straße im Straßennetz berechnet.
+Es könnte sein, dass Fassadenpunkte nahe an nicht kartierten Straßen liegen, die faktisch deren Immissionspegel dominieren - somit würden die Pegel im vorliegenden Modell unterschätzt.
 
 ```{r strassennetz_auftrennen}
 strNetz22<-
   strNetz22 %>% 
-  mutate(str_art=str_sub(STRASSE,1,1))
+  mutate(str_art=str_sub(STRASSE,1,1))# das hier extrahiert einfach den ersten Buchstaben: also A, B, K oder L
 
 ```
 
+Um das untersuchen zu können, wird hier der Abstand der Fassadenpunkte zur nächsten Straße im Straßennetz berechnet.
 Die Ergebnisse werden dann zu den Fassadenpunkten hinzugefügt und wieder als Shapedatei abgespeichert.
 
 
 ```{r ermittle_strassenabstand}
 # Pfad für die Ausgabedatei
-outpath_strassenabstand <- "D:/Mainz-Bingen/Fassadenpunkte_mit_allen_Abstaenden.gpkg"
+
+ausgabepfad_strabst
 
 # Alte Dateien löschen für sauberen Neustart
-if (file.exists(outpath_strassenabstand)) {
-  base_path <- tools::file_path_sans_ext(outpath_strassenabstand)
+if (file.exists(ausgabepfad_strabst)) {
+  base_path <- tools::file_path_sans_ext(ausgabepfad_strabst)
   # Lösche alle Endungen (.shp, .shx, .dbf, .prj etc.)
-  files_to_delete <- list.files(dirname(outpath_strassenabstand), 
+  files_to_delete <- list.files(dirname(ausgabepfad_strabst), 
                                 pattern = paste0(basename(base_path), ".*"), 
                                 full.names = TRUE)
   unlink(files_to_delete)
@@ -249,7 +255,7 @@ if (length(dist_cols) > 0) {
 }
 
 message("Speichere finale Datei...")
-st_write(fassadenpunkte_erweitert, dsn = outpath_strassenabstand, delete_dsn = TRUE)
+st_write(fassadenpunkte_erweitert, dsn = ausgabepfad_strabst, delete_dsn = TRUE)
 message("---- SKRIPT TEIL ERFOLGREICH BEENDET ----")
 ```
 
@@ -330,27 +336,17 @@ Die x-Achse ist logaritmisch geplottet, sodass die geometrische Abstandsabhängi
 
 ## Fassadenpunkte exportiert 2025
 
-Die Datei
-
-```{r datei_fp2025}
-#| echo: false
-
-pfad_fassadenpunkte_2025<-"../Fassadenpunkte_EBA.gpkg"
-pfad_fassadenpunkte_2025
-
-```
-
-wurde im Dezember 2025 gesendet von Nathalie Paris, LfU. Sie besteht aus einer gpkg-Datei mit folgenden Layern:
+Die Datei `{r} eingabepfad_fasp_2025` wurde im Dezember 2025 gesendet von Nathalie Paris, LfU. Sie besteht aus einer gpkg-Datei mit folgenden Layern:
 
 ```{r vorhandene_layer}
-st_layers(here(pfad_fassadenpunkte_2025))
+st_layers(here(eingabepfad_fasp_2025))
 ```
 
 Das bedeutet, dass darin offensichtlich nur die Fassadenpunkte mit Schienenpegeln vom Eisenbahnbundesamt (EBA) enthalten sind, allerdings die Adressdaten fehlen.
 
 ```{r einlesen_fpEBA}
 #| echo: false
-fassadenpunkte_EBA<-st_read(dsn=pfad_fassadenpunkte_2025)%>% 
+fassadenpunkte_EBA<-st_read(dsn=eingabepfad_fasp_2025)%>% 
   st_transform(25832)
 summary(fassadenpunkte_EBA)
 
@@ -377,7 +373,7 @@ Sie enthalten neben den Fassadenpunkten aus dem Landkreis Mainz-Bingen offenbar 
 # library(terra)
 # library(gpkg)
 # library(RSQLite)
-# g <- geopackage(pfad_strassennetz, connect = TRUE)
+# g <- geopackage(eingabepfad_strassennetz, connect = TRUE)
 # g
 # gpkg_list_tables(g)
 
